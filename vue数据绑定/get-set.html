@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>姓名：{{ fullName }}</h1>
+    </div>
+    <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          firstName: "jack",
+          lastName: "Green"
+        },
+        computed: {
+            //每一个计算属性都包含一个getter和一个setter，平时默认使用的
+            //都是计算属性的getter来读取。在需要时可以提供一个setter函数
+            //当手动修改计算属性的值就像修改一个普通数据那样，就会触发setter
+            //属性，执行一些自定义操作
+          fullName: {
+            //getter,用于读取
+            get: function() {
+              return this.firstName + "   " + this.lastName;
+            },
+            //setter写入时触发
+            set: function(newValue) {
+                var names = newValue.split('');
+                this.firstName = name[0];
+                this.lastName = names[names.length - 1];
+                
+            }
+            
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
