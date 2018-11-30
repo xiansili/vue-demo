@@ -30,7 +30,10 @@ var app = new Vue({
         count: 1,
         isshow: false
       }
-    ]
+    ],
+    shopname: "",
+    shopprice: "0",
+    search: ""
   },
 
   methods: {
@@ -56,21 +59,44 @@ var app = new Vue({
       });
     },
     selectAll() {
-      this.list.filter((elem)=>{
-        if (elem.isshow = true) {
+      this.list.filter(elem => {
+        if ((elem.isshow = true)) {
           return elem;
         }
       });
     },
     selectNo() {
-      this.list.filter((elem)=>{
-         if (elem.isshow = false) {
-           return elem;
-         }
-       });
-     }
-  
+      this.list.filter(elem => {
+        if ((elem.isshow = false)) {
+          return elem;
+        }
+      });
+    },
+
+    additem() {
+      if (this.shopname != "") {
+        this.list.push({
+          name: this.shopname,
+          price: this.shopprice,
+          isshow: false,
+          count: 1
+        });
+      }
+      (this.shopname = ""), (this.shopprice = 0);
+    },
+
+    searchitem() {
+      this.list = this.list.filter(item => {
+        if ((item.name === this.search)) {
+          return item;
+        }
+      });
+    }
   },
+
+
+
+
   computed: {
     shop() {
       let sum = 0;

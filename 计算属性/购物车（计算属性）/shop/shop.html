@@ -10,51 +10,69 @@
   <body>
     <div id="app" v-cloak>
       <template v-if="list.length">
-          <table class="shop">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>商品名称</th>
-                  <th>商品单价</th>
-                  <th>操作数量</th>
-                  <th>操作</th>
-                  <th>是否选中</th>
-                </tr>
-              </thead>
-              <tbody >
-                <tr v-for="(item, index) in list" :class="{'show': item.isshow }">
-                  <td>{{ index + 1 }}</td>
-                  <td>{{ item.name }}</td>
-                  <td>{{ item.price }}</td>
-                  <td>
-                    <button @click="less(index)">-</button>
-                    {{ item.count }}
-                    <button @click="add(index)">+</button>
-                  </td>
-                  <td>
-                    <button value="移除" @click="remove(index)">移除</button>
-                  </td>
-                  <td>
-                    <button value="选择" @click="select(index)">选择</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <button value="删除选中" @click="del">删除选中</button>
-                  </td>
-                  <td colspan="5">选中价格:{{ shop }}</td>
-                </tr>
-              </tbody>
-            </table>
-            <button value="全选" @click="selectAll">全选</button>
-            <button value="取消全选" @click="selectNo">取消全选</button>
-            
-            
+        <h2>搜索功能</h2>
+        <input type="text" v-model="search" />
+        <button @click="searchitem">搜索</button>
+        <hr>
+
+        <table class="shop">
+          <thead>
+            <tr>
+              <th></th>
+              <th>商品名称</th>
+              <th>商品单价</th>
+              <th>操作数量</th>
+              <th>操作</th>
+              <th>是否选中</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item, index) in list" :class="{'show': item.isshow }">
+              <td>{{ index + 1 }}</td>
+              <td>{{ item.name }}</td>
+              <td>{{ item.price }}</td>
+              <td>
+                <button @click="less(index)">-</button> {{ item.count }}
+                <button @click="add(index)">+</button>
+              </td>
+              <td><button value="移除" @click="remove(index)">移除</button></td>
+              <td><button value="选择" @click="select(index)">选择</button></td>
+            </tr>
+            <tr>
+              <td><button value="删除选中" @click="del">删除选中</button></td>
+              <td colspan="5">选中价格:{{ shop }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <button value="全选" @click="selectAll">全选</button>
+        <button value="取消全选" @click="selectNo">取消全选</button>
+
+        <h3>增加商品</h3>
+
+        <form>
+          <div>
+            <label for="name">商品名称</label>
+            <input
+              type="text"
+              v-model="shopname"
+              placeholder="请输入商品名称"
+            />
+          </div>
+          <div>
+            <label for="price">商品价格</label>
+            <input
+              type="text"
+              v-model="shopprice"
+              placeholder="请输入商品价格"
+            />
+          </div>
+
+          <input type="submit" value="增加" @click.prevent="additem" />
+        </form>
       </template>
       <div v-else>购物车为空</div>
     </div>
     <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
-    <script src="index.js">
-    </script>
+    <script src="index.js"></script>
   </body>
 </html>
