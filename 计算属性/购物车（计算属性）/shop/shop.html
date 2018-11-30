@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>购物车</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="index.css" />
+  </head>
+  <body>
+    <div id="app" v-cloak>
+      <template v-if="list.length">
+          <table class="shop">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>商品名称</th>
+                  <th>商品单价</th>
+                  <th>操作数量</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(item, index) in list">
+                  <td>{{ index + 1 }}</td>
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.price }}</td>
+                  <td>
+                    <button @click="less(index)">-</button>
+                    {{ item.count }}
+                    <button @click="add(index)">+</button>
+                  </td>
+                  <td>
+                    <button value="移除" @click="remove(index)">移除</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <h3>总价:{{ shopprice }}</h3>
+      </template>
+      <div v-else>购物车为空</div>
+    </div>
+    <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+    <script src="index.js">
+    </script>
+  </body>
+</html>
