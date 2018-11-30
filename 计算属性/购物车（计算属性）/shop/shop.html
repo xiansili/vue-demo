@@ -18,10 +18,11 @@
                   <th>商品单价</th>
                   <th>操作数量</th>
                   <th>操作</th>
+                  <th>是否选中</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr v-for="(item, index) in list">
+              <tbody >
+                <tr v-for="(item, index) in list" :class="{'show': item.isshow }">
                   <td>{{ index + 1 }}</td>
                   <td>{{ item.name }}</td>
                   <td>{{ item.price }}</td>
@@ -33,10 +34,14 @@
                   <td>
                     <button value="移除" @click="remove(index)">移除</button>
                   </td>
+                  <td>
+                    <button value="选择" @click="select(index)">选择</button>
+                  </td>
                 </tr>
               </tbody>
             </table>
-            <h3>总价:{{ shopprice }}</h3>
+            <button value="全选" @click="selectAll(index)">全选</button>
+            <h3>选中价格:{{ shop }}</h3>
       </template>
       <div v-else>购物车为空</div>
     </div>
