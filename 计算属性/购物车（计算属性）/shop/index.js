@@ -7,28 +7,28 @@ var app = new Vue({
         name: "iphone7",
         price: 6199,
         count: 1,
-        isshow:false
+        isshow: false
       },
       {
         id: 2,
         name: "ipad",
         price: 2299,
         count: 1,
-        isshow:false
+        isshow: false
       },
       {
         id: 3,
         name: "apple",
         price: 355,
         count: 1,
-        isshow:false
+        isshow: false
       },
       {
         id: 4,
         name: "banana",
         price: 298,
         count: 1,
-        isshow:false
+        isshow: false
       }
     ]
   },
@@ -44,20 +44,43 @@ var app = new Vue({
     },
     remove: function(index) {
       this.list.splice(index, 1);
-    },select: function(index) {
-      this.list[index].isshow = ! this.list[index].isshow;
-     },
+    },
+    select: function(index) {
+      this.list[index].isshow = !this.list[index].isshow;
+    },
+    del() {
+      this.list = this.list.filter(elem => {
+        if (!elem.isshow) {
+          return elem;
+        }
+      });
+    },
+    selectAll() {
+      this.list.filter((elem)=>{
+        if (elem.isshow = true) {
+          return elem;
+        }
+      });
+    },
+    selectNo() {
+      this.list.filter((elem)=>{
+         if (elem.isshow = false) {
+           return elem;
+         }
+       });
+     }
+  
   },
   computed: {
-    shop(){
+    shop() {
       let sum = 0;
-      this.list.forEach(elem=>{
+      this.list.forEach(elem => {
         if (elem.isshow) {
-          let money =  elem.price * elem.count;
-           sum += money;
-        }   
+          let money = elem.price * elem.count;
+          sum += money;
+        }
       });
-      return sum.toString().replace(/\B(?=(\d{3})+$)/g, ",");;
+      return sum.toString().replace(/\B(?=(\d{3})+$)/g, ",");
     }
   }
 });

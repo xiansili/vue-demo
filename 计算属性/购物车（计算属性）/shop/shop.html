@@ -38,10 +38,18 @@
                     <button value="选择" @click="select(index)">选择</button>
                   </td>
                 </tr>
+                <tr>
+                  <td>
+                    <button value="删除选中" @click="del">删除选中</button>
+                  </td>
+                  <td colspan="5">选中价格:{{ shop }}</td>
+                </tr>
               </tbody>
             </table>
-            <button value="全选" @click="selectAll(index)">全选</button>
-            <h3>选中价格:{{ shop }}</h3>
+            <button value="全选" @click="selectAll">全选</button>
+            <button value="取消全选" @click="selectNo">取消全选</button>
+            
+            
       </template>
       <div v-else>购物车为空</div>
     </div>
