@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <div id="app">
+        <input type="text" v-model="parentMassaeg">
+        <my-component :message="parentMassaeg"></my-component>
+    </div>
+    <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+    <script>
+      Vue.component('my-component',{
+          props: ['message'],
+          template: '<div>{{ message }}</div>'
+      });
+
+      var app = new Vue({
+          el:"#app",
+          data:{
+            parentMassaeg:''
+          }
+      })
+
+      
+    </script>
+  </body>
+</html>
