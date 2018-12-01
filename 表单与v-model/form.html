@@ -1,43 +1,84 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
     <div id="app">
-        <input type="text" @input="handleInput" placeholder="输入。。。">
-        <h1>{{message}}</h1>
-        <hr>
-        <input type="radio" :check="picked">
-        <label >单选按钮</label>
-        <hr>
+      <input type="text" @input="handleInput" placeholder="输入。。。" />
+      <h1>{{ message }}</h1>
+      <hr />
+      <input type="radio" :check="picked" /> <label>单选按钮</label>
+      <hr />
+      <div>
+        <input type="radio" v-model="picked" value="html" id="html" />
+        <label for="html">html</label>
+        <input type="radio" v-model="picked" value="js" id="js" />
+        <label for="js">javascript</label>
+        <input type="radio" v-model="picked" value="css" id="css" />
+        <label for="css">css</label>
+      </div>
+      <p>选择的项目是{{ picked }}</p>
+      <!--
         <div>
-                <input type="radio" v-model="picked" value="html" id="html">
-                <label for="html">html</label>
-                <input type="radio" v-model="picked" value="js" id="js">
-                <label for="js">javascript</label>
-                <input type="radio" v-model="picked" value="css" id="css">
-                <label for="css">css</label>
+            <h2>复选框</h2>
+            <input type="checkbox" v-model="checked" id="checked">
+            <label for="checked">选择状态：{{checked}}</label>
         </div>
-        <p>选择的项目是{{picked}}</p>
+      -->
+      <!--
+        <div>
+                <input type="checkbox" v-model="checked" value="html" id="html">
+                <label for="html">html</label>
+                <input type="checkbox" v-model="checked" value="js" id="js">
+                <label for="js">javascript</label>
+                <input type="checkbox" v-model="checked" value="css" id="css">
+                <label for="css">css</label>
+                <h1>{{checked}}</h1>
+        </div>
+      -->
+      <div>
+        <select v-model="checked" multiple>
+          <option v-for="option in options"
+          :value="option.value"
+          >{{option.text}}</option>
+        </select>
+        <h1>{{ checked }}</h1>
+      </div>
     </div>
     <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
     <script>
-        var app = new Vue({
-            el:"#app",
-            data:{
-                message:'',
-                picked:'js'
+      var app = new Vue({
+        el: "#app",
+        data: {
+          message: "",
+          picked: "js",
+          checked: "css",
+
+          options: [
+            {
+              text: "Html",
+              value: "html"
             },
-            methods:{
-                handleInput(e){
-                    this.message = e.target.value;
-                }
+            {
+              text: "Css",
+              value: "css"
+            },
+            {
+              text: "Js",
+              value: "js"
             }
-        })
+          ]
+        },
+        methods: {
+          handleInput(e) {
+            this.message = e.target.value;
+          }
+        }
+      });
     </script>
-</body>
+  </body>
 </html>
